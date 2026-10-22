@@ -1,0 +1,40 @@
+{
+  "name": "@hexis/core",
+  "version": "0.1.0",
+  "description": "Pure TypeScript, signing-and-risk-aware Strike client.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "keywords": [
+    "strike",
+    "strikefinance",
+    "hyperliquid",
+    "copy-trading",
+    "ed25519",
+    "agent"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "tsx --test test/signing.test.ts test/manifest.test.ts test/risk.test.ts test/receipt.test.ts test/copy.test.ts test/mcp.test.ts test/live.test.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

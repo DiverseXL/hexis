@@ -1,0 +1,91 @@
+/** Machine-readable tool manifest for MCP hosts and agent frameworks. */
+export const MCP_MANIFEST = {
+  name: 'hexis',
+  version: '0.1.0',
+  description:
+    'Risk-checked Strike copy trading. Every mutating tool returns a receipt path and refuses unsafe inputs unless force is true.',
+  tools: [
+    {
+      name: 'hexis_discover',
+      description:
+        'Discover ranked Hyperliquid or Strike lead traders. Public; no key required.',
+      input: {
+        type: 'object',
+        properties: {
+          platform: { type: 'string', enum: ['hyperliquid', 'strike', 'all'], default: 'hyperliquid' },
+          rank: { type: 'string', enum: ['pnl_30d', 'equity', 'volume_30d'], default: 'pnl_30d' },
+          top: { type: 'integer', minimum: 1, maximum: 10000 },
+          limit: { type: 'integer', minimum: 1, maximum: 200, default: 5 },
+          search: { type: 'string' },
+        },
+        additionalProperties: false,
+      },
+    },
+    {
+      name: 'hexis_risk_check',
+      description:
+        'Preflight copying a lead against manifest policy. Never throws for a bad lead; inspect status (SAFE, HIGH_RISK, BLOCKED, ERROR).',
+      input: {
+        type: 'object',
+        required: ['lead'],
+        properties: {
+          lead: { type: 'string', description: 'Hyperliquid 0x address or Strike account UUID' },
+          leverage: { type: 'number', minimum: 1, maximum: 125 },
+          sizePct: { type: 'number', minimum: 0, maximum: 100 },
+          isolated: { type: 'boolean' },
+          market: { type: 'string' },
+        },
+        additionalProperties: false,
+      },
+    },
+    {
+      name: 'hexis_copy',
+      description:
+        'Copy a lead after preflight. Refuses BLOCKED/HIGH_RISK unless force is true. Writes a signed receipt. Requires a key.',
+      input: {
+        type: 'object',
+        required: ['lead'],
+        properties: {
+          lead: { type: 'string' },
+          sizePct: { type: 'number', minimum: 0, maximum: 100 },
+          leverage: { type: 'number', minimum: 1, maximum: 125 },
+          isolated: { type: 'boolean' },
+          force: { type: 'boolean', default: false },
+          dryRun: { type: 'boolean', default: false },
+          builderFeeBps: { type: 'integer', minimum: 0, maximum: 100 },
+        },
+        additionalProperties: false,
+      },
+    },
+    {
+      name: 'hexis_positions',
+      description: 'List open positions with mark, liquidation price and liquidation distance.',
+      input: { type: 'object', properties: {}, additionalProperties: false },
+    },
+    {
+      name: 'hexis_history',
+      description: 'List fills, optionally filtered to copy-triggered fills.',
+      input: {
+        type: 'object',
+        properties: {
+          source: { type: 'string', enum: ['copy', 'manual', 'twap', 'grid'] },
+          symbol: { type: 'string' },
+          limit: { type: 'integer', minimum: 1, maximum: 1000 },
+        },
+        additionalProperties: false,
+      },
+    },
+    {
+      name: 'hexis_stop_copy',
+      description: 'Stop a copy subscription and close its copied positions. Writes a receipt.',
+      input: {
+        type: 'object',
+        required: ['subscriptionId'],
+        properties: { subscriptionId: { type: 'string' } },
+        additionalProperties: false,
+      },
+    },
+  ],
+} as const;
+
+export type McpManifest = typeof MCP_MANIFEST;

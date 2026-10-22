@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "defaults": {
+    "isolated": true,
+    "leverage": 8,
+    "sizePct": 5,
+    "requireRiskCheck": true
+  },
+  "caps": {
+    "maxLeverage": { "default": 10, "BTC-USD": 15, "ETH-USD": 15 },
+    "minLiquidationDistancePct": 5,
+    "maxLeadDrawdown30dPct": 25
+  },
+  "deny": {
+    "leads": [],
+    "markets": []
+  }
+}
