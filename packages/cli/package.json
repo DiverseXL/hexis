@@ -1,0 +1,39 @@
+{
+  "name": "@hexis/cli",
+  "version": "0.1.0",
+  "description": "Human-readable CLI for @hexis/core: discover, risk-check, copy, positions, history.",
+  "type": "module",
+  "bin": {
+    "hexis": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "keywords": [
+    "strike",
+    "copy-trading",
+    "cli",
+    "agent",
+    "mcp"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "tsx --test test/format.test.ts"
+  },
+  "dependencies": {
+    "@hexis/core": "workspace:*",
+    "commander": "^12.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
