@@ -1,4 +1,4 @@
-/** Public types for @hexis/core. */
+/** Public types for @mccloned/hexis-core. */
 
 export type Platform = 'hyperliquid' | 'strike';
 export type DiscoverPlatform = Platform | 'all';

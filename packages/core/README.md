@@ -1,9 +1,9 @@
-# @hexis/core
+# @mccloned/hexis-core
 
 Pure-TypeScript, signing-and-risk-aware Strike client. No CLI dependencies.
 
 ```ts
-import { HexisClient } from '@hexis/core';
+import { HexisClient } from '@mccloned/hexis-core';
 
 const hexis = new HexisClient({ privateKey: process.env.HEXIS_PRIVATE_KEY });
 

@@ -1,5 +1,5 @@
 {
-  "name": "@hexis/core",
+  "name": "@mccloned/hexis-core",
   "version": "0.1.0",
   "description": "Pure TypeScript, signing-and-risk-aware Strike client.",
   "type": "module",

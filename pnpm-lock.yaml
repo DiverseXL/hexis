@@ -8,7 +8,7 @@ importers:
 
   .:
     devDependencies:
-      '@hexis/core':
+      '@mccloned/hexis-core':
         specifier: workspace:*
         version: link:packages/core
       '@types/node':
@@ -23,7 +23,7 @@ importers:
 
   packages/cli:
     dependencies:
-      '@hexis/core':
+      '@mccloned/hexis-core':
         specifier: workspace:*
         version: link:../core
       commander:
