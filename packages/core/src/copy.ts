@@ -20,9 +20,10 @@ interface SubscribeBody {
   platform: 'strike' | 'hyperliquid';
   copy_mode: 'fixed_ratio';
   copy_amount: string;
-  max_leverage: number;
+  /** Docs: max_leverage caps a followed leverage, so it only applies with leverage_source "lead". */
+  max_leverage?: number;
   copy_existing_positions: boolean;
-  leverage_source: 'account';
+  leverage_source: 'account' | 'lead';
   margin_mode_source: 'account';
   excluded_symbols?: string[];
 }
@@ -236,14 +237,17 @@ export async function executeCopy(input: ExecuteCopyInput): Promise<CopyResult> 
     if (!excluded.includes(required)) excluded.push(required);
   }
 
+  // Fixed to 'account' today; the spread keeps us docs-conformant if this
+  // ever flips to 'lead' (max_leverage only applies to a followed leverage).
+  const leverageSource = 'account' as 'account' | 'lead';
   const body: SubscribeBody = {
     lead_account_id: lead.address,
     platform: lead.platform,
     copy_mode: 'fixed_ratio',
     copy_amount: money(copyAmount),
-    max_leverage: leverage,
+    ...(leverageSource === 'lead' ? { max_leverage: leverage } : {}),
     copy_existing_positions: options.copyExistingPositions ?? false,
-    leverage_source: 'account',
+    leverage_source: leverageSource,
     margin_mode_source: 'account',
     ...(excluded.length ? { excluded_symbols: excluded } : {}),
   };

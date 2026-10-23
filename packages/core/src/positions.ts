@@ -23,6 +23,8 @@ interface RawPrice {
 
 interface CopyPosition {
   id?: string;
+  /** Docs: `own: true` marks the follower's own remainder on a copied market. */
+  own?: boolean;
   subscription_id?: string;
   lead_account_id?: string;
   lead_nickname?: string;
@@ -74,7 +76,7 @@ export async function fetchPositions(
       });
       copyBySymbol = new Map(
         (copy.data.positions ?? [])
-          .filter((position) => position.market && !position.id?.startsWith('own'))
+          .filter((position) => position.market && !position.own && !position.id?.startsWith('own'))
           .map((position) => [position.market!, position]),
       );
     } catch {

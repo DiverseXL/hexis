@@ -24,6 +24,15 @@
     "agent"
   ],
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DiverseXL/hexis.git",
+    "directory": "packages/core"
+  },
+  "homepage": "https://github.com/DiverseXL/hexis/tree/main/packages/core#readme",
+  "bugs": {
+    "url": "https://github.com/DiverseXL/hexis/issues"
+  },
   "engines": {
     "node": ">=20"
   },

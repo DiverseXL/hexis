@@ -126,7 +126,9 @@ test('copy with force applies settings, subscribes, and writes an executed recei
   assert.equal(body.copy_mode, 'fixed_ratio');
   assert.equal(body.copy_amount, '500.00');
   assert.equal(body.lead_account_id, LEAD_ADDRESS);
-  assert.equal(body.max_leverage, 8);
+  // Docs: max_leverage only applies with leverage_source "lead"; the default
+  // "account" source must not send it.
+  assert.equal('max_leverage' in body, false);
 
   assert.ok(calls.some((call) => call.path === '/v2/leverage'));
   assert.ok(calls.some((call) => call.path === '/v2/marginMode'));
