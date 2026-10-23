@@ -41,7 +41,8 @@ The canonical message is byte-exact:
   empty string: `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`.
 - The body is serialized once; the same bytes are hashed and transmitted.
 - `NONCE` is a fresh UUID v4 per request.
-- `TIMESTAMP` is Unix seconds and must be within three minutes of server time.
+- `TIMESTAMP` is Unix seconds and must be within a short clock-skew window
+  of server time (see Strike docs).
 
 The signing module is deterministic when `timestamp` and `nonce` are injected,
 which is how the RFC 8032 test vector and canonical-message tests stay honest.
@@ -87,7 +88,9 @@ sizes, and results — treat them as sensitive trading data.
 
 - Hexis cannot verify that a key is registered with Strike; an unregistered key
   produces an authentication error, not a preflight failure.
-- Timestamp drift beyond three minutes causes auth failures. Sync your clock.
+- Timestamp drift beyond the server's short clock-skew window (see Strike
+  docs) causes auth failures. Sync your clock; `GET` on the server-time
+  endpoint documented by Strike can help.
 - The risk preflight is an estimate, not a liquidation guarantee. See
   [RISK.md](RISK.md).
 - This project is a 48-hour MVP. It has not been audited. Use testnet first.

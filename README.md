@@ -191,7 +191,8 @@ nonces, or leverage. See [docs/AGENT.md](docs/AGENT.md).
 
 ## Security
 
-The Strike API wallet cannot withdraw funds. Private keys never leave the
+The Strike API wallet cannot withdraw funds (Strike API docs, Getting
+Started). Private keys never leave the
 machine; only signatures are transmitted. Hexis never persists keys by default.
 Every mutation writes a signed, hashed receipt to `.hexis/receipts/`. Read the
 full [withdrawal guarantee and key-handling rules](docs/SECURITY.md).
@@ -211,8 +212,29 @@ hexis.mcp.json
 
 Hexis is not a trading terminal, strategy engine, multi-exchange layer,
 custody solution, or replacement for the Strike app. It does not claim
-backtested performance. It is a deliberately narrow DX layer over the eight
-Strike endpoints that matter for copy trading.
+backtested performance. It is a deliberately narrow DX layer over the Strike
+endpoints that matter for copy trading.
+
+## Known limitations
+
+Honest edges, in the order you are likely to hit them:
+
+- **Signed calls are not yet live-tested.** `copy`, `positions`, and
+  authenticated `risk-check` margin checks are verified by unit tests
+  (mocked HTTP, RFC 8032 vectors, tamper-checked receipts) and audited
+  against Strike's published docs, but no signed request has yet been sent
+  from this repo to the live API with a registered wallet. Update this
+  section after that test.
+- **Liquidation distance is an approximation.** The preflight estimate is
+  `100/leverage` minus a fixed 1.1% maintenance/fee buffer. It does not model
+  entry price, funding, or per-market maintenance-margin tiers, and it is not
+  a liquidation guarantee.
+- **`history` without `--source` labels every fill `manual`.** The API only
+  returns fills matching a given source filter, so an unfiltered fetch cannot
+  distinguish copy fills after the fact; use `--source copy` to see them.
+- **Strike discovery can include degenerate leads.** Zero-equity accounts can
+  surface with absurd ROI figures. The risk engine blocks them via the
+  drawdown and margin checks, but discovery output is not sanitized.
 
 ## License
 
