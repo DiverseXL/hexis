@@ -1,7 +1,7 @@
 {
-  "name": "@hexis/cli",
+  "name": "@mccloned/hexis-cli",
   "version": "0.1.0",
-  "description": "Human-readable CLI for @hexis/core: discover, risk-check, copy, positions, history.",
+  "description": "Human-readable CLI for @mccloned/hexis-core: discover, risk-check, copy, positions, history.",
   "type": "module",
   "bin": {
     "hexis": "./dist/index.js"
@@ -37,7 +37,7 @@
     "test": "tsx --test test/format.test.ts"
   },
   "dependencies": {
-    "@hexis/core": "workspace:*",
+    "@mccloned/hexis-core": "workspace:*",
     "commander": "^12.1.0"
   },
   "devDependencies": {

@@ -1,4 +1,4 @@
-import { exitCodeForVerdict } from '@hexis/core';
+import { exitCodeForVerdict } from '@mccloned/hexis-core';
 import { Command } from 'commander';
 import {
   createClient,

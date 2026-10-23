@@ -5,7 +5,7 @@ import {
   HexisClient,
   HexisError,
   type HexisClientOptions,
-} from '@hexis/core';
+} from '@mccloned/hexis-core';
 
 export interface CommonOptions {
   json?: boolean;

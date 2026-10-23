@@ -1,4 +1,4 @@
-import type { Fill, FillSource } from '@hexis/core';
+import type { Fill, FillSource } from '@mccloned/hexis-core';
 import { Command } from 'commander';
 import { createClient, integerOption, printJson, type CommonOptions } from '../context.js';
 import { bold, dim, renderFills } from '../format.js';

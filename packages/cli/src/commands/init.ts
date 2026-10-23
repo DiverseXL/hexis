@@ -1,6 +1,6 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import { generateKeyPair, HexisError } from '@hexis/core';
+import { generateKeyPair, HexisError } from '@mccloned/hexis-core';
 import { Command } from 'commander';
 import { printJson } from '../context.js';
 import { bold, dim, green } from '../format.js';

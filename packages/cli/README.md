@@ -1,14 +1,14 @@
-# @hexis/cli
+# @mccloned/hexis-cli
 
-Thin commander wrapper over `@hexis/core`, with human-readable verdicts.
+Thin commander wrapper over `@mccloned/hexis-core`, with human-readable verdicts.
 
 ```bash
-npx @hexis/cli init
-npx @hexis/cli discover --platform hyperliquid --top 5
-npx @hexis/cli risk-check 0xLead... --leverage 8
-npx @hexis/cli copy 0xLead... --size 5% --leverage 8
-npx @hexis/cli positions --watch
-npx @hexis/cli history --source copy
+npx --package=@mccloned/hexis-cli hexis init
+npx --package=@mccloned/hexis-cli hexis discover --platform hyperliquid --top 5
+npx --package=@mccloned/hexis-cli hexis risk-check 0xLead... --leverage 8
+npx --package=@mccloned/hexis-cli hexis copy 0xLead... --size 5% --leverage 8
+npx --package=@mccloned/hexis-cli hexis positions --watch
+npx --package=@mccloned/hexis-cli hexis history --source copy
 ```
 
 Every command supports `--json`. Mutating commands print the signed receipt

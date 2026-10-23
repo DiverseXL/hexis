@@ -1,4 +1,4 @@
-import type { DiscoverPlatform, RankKey } from '@hexis/core';
+import type { DiscoverPlatform, RankKey } from '@mccloned/hexis-core';
 import { Command } from 'commander';
 import { createClient, integerOption, printJson, type CommonOptions } from '../context.js';
 import { bold, dim, renderLeads } from '../format.js';

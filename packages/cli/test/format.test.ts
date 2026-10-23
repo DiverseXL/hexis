@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { renderLeads, renderVerdict, table } from '../src/format.js';
 import { setColor } from '../src/format.js';
-import type { Lead, Verdict } from '@hexis/core';
+import type { Lead, Verdict } from '@mccloned/hexis-core';
 
 setColor(false);
 

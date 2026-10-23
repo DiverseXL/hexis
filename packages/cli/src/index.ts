@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { HexisError, VERSION } from '@hexis/core';
+import { HexisError, VERSION } from '@mccloned/hexis-core';
 import { Command } from 'commander';
 import { registerCopy } from './commands/copy.js';
 import { registerDiscover } from './commands/discover.js';

@@ -1,4 +1,4 @@
-import type { Fill, Lead, Position, Verdict } from '@hexis/core';
+import type { Fill, Lead, Position, Verdict } from '@mccloned/hexis-core';
 
 let colorEnabled = process.stdout.isTTY && !process.env.NO_COLOR;
 
