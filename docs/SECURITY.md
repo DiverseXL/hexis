@@ -77,7 +77,7 @@ without `receiptHash` and `signature`. The signature is Ed25519 over the digest
 using the API-wallet key. Verify in code:
 
 ```ts
-import { verifyReceipt } from '@hexis/core';
+import { verifyReceipt } from '@mccloned/hexis-core';
 const ok = verifyReceipt(JSON.parse(await readFile(path, 'utf8')));
 ```
 

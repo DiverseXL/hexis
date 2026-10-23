@@ -1,5 +1,5 @@
 // Custom risk policy: hold every market to 5x and require 8% liquidation distance.
-import { HexisClient, HARDCODED_MANIFEST, type Manifest } from '@hexis/core';
+import { HexisClient, HARDCODED_MANIFEST, type Manifest } from '@mccloned/hexis-core';
 
 const manifest: Manifest = {
   ...structuredClone(HARDCODED_MANIFEST),

@@ -1,5 +1,5 @@
 // Agent skill walkthrough: expose the MCP manifest, then run the read-only loop.
-import { HexisClient, MCP_MANIFEST } from '@hexis/core';
+import { HexisClient, MCP_MANIFEST } from '@mccloned/hexis-core';
 
 const hexis = new HexisClient();
 const leads = await hexis.discover({ platform: 'hyperliquid', limit: 1 });

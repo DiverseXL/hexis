@@ -8,7 +8,7 @@ details. The agent surface is deliberately small:
    `suggested` parameters.
 3. Mutations return a receipt path; refusals also return a receipt.
 4. The MCP tool manifest ships at `hexis.mcp.json` and as `MCP_MANIFEST` from
-   `@hexis/core`.
+   `@mccloned/hexis-core`.
 
 ## Tool manifest
 
@@ -104,7 +104,7 @@ In `--json` mode, errors are structured too:
 ## TypeScript surface
 
 ```ts
-import { HexisClient } from '@hexis/core';
+import { HexisClient } from '@mccloned/hexis-core';
 
 const hexis = new HexisClient({ privateKey: process.env.HEXIS_PRIVATE_KEY });
 const verdict = await hexis.riskCheck(lead, { leverage: 8, sizePct: 5 });
@@ -121,5 +121,5 @@ as the final argument.
 ## Why this is safe for agents
 
 The agent cannot hallucinate a signature, nonce, body hash, or leverage cap:
-those are generated or validated inside `@hexis/core`. The only decisions left
+those are generated or validated inside `@mccloned/hexis-core`. The only decisions left
 are which lead and whether the verdict permits action.

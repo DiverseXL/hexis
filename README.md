@@ -2,8 +2,8 @@
 
 **Risk-checked Strike copy trading from one command.**
 
-Hexis is a pnpm monorepo shipping `@hexis/core` (a pure-TypeScript,
-signing-and-risk-aware Strike client) and `@hexis/cli` (a thin wrapper with
+Hexis is a pnpm monorepo shipping `@mccloned/hexis-core` (a pure-TypeScript,
+signing-and-risk-aware Strike client) and `@mccloned/hexis-cli` (a thin wrapper with
 human-readable verdicts). Go from raw Ed25519 keys to a risk-checked
 Hyperliquid-to-Strike copy in four commands, with every action receipted.
 
@@ -39,15 +39,15 @@ node packages/cli/dist/index.js --help
 To use the published packages:
 
 ```bash
-npx @hexis/cli discover --platform hyperliquid --top 5
+npx --package=@mccloned/hexis-cli hexis discover --platform hyperliquid --top 5
 # or
-pnpm add @hexis/core
+pnpm add @mccloned/hexis-core
 ```
 
 For local development, link the CLI:
 
 ```bash
-pnpm --filter @hexis/cli link --global
+pnpm --filter @mccloned/hexis-cli link --global
 hexis --version
 ```
 
@@ -180,7 +180,7 @@ Machine codes include `LEVERAGE_EXCEEDS_POLICY`, `LIQUIDATION_TOO_CLOSE`,
 ## Agent surface
 
 Every command has `--json`, and `hexis.mcp.json` exports the MCP tool manifest
-(also available as `MCP_MANIFEST` from `@hexis/core`). The intended loop:
+(also available as `MCP_MANIFEST` from `@mccloned/hexis-core`). The intended loop:
 
 ```json
 { "status": "BLOCKED", "code": "LEVERAGE_EXCEEDS_POLICY", "suggested": { "leverage": 8 } }
@@ -202,8 +202,8 @@ full [withdrawal guarantee and key-handling rules](docs/SECURITY.md).
 ## Repository layout
 
 ```
-packages/core/   @hexis/core - signing, discovery, risk, copy, receipts
-packages/cli/    @hexis/cli  - commander wrapper + verdict renderer
+packages/core/   @mccloned/hexis-core - signing, discovery, risk, copy, receipts
+packages/cli/    @mccloned/hexis-cli  - commander wrapper + verdict renderer
 examples/        basic-copy.ts, risk-policy.ts, agent-skill.ts
 docs/            SECURITY.md, RISK.md, AGENT.md, sample-receipt.json
 hexis.manifest.json

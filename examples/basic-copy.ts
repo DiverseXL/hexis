@@ -1,5 +1,5 @@
 // 15-line walkthrough: discover -> preflight -> copy -> receipt.
-import { HexisClient } from '@hexis/core';
+import { HexisClient } from '@mccloned/hexis-core';
 
 const hexis = new HexisClient({ privateKey: process.env.HEXIS_PRIVATE_KEY });
 const lead = process.argv[2] ?? (await hexis.discover({ limit: 1 }))[0]?.address;
