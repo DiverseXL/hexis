@@ -194,7 +194,9 @@ nonces, or leverage. See [docs/AGENT.md](docs/AGENT.md).
 The Strike API wallet cannot withdraw funds (Strike API docs, Getting
 Started). Private keys never leave the
 machine; only signatures are transmitted. Hexis never persists keys by default.
-Every mutation writes a signed, hashed receipt to `.hexis/receipts/`. Read the
+Every mutation writes a signed, hashed receipt to `.hexis/receipts/`;
+[docs/sample-receipt.json](docs/sample-receipt.json) is a real signed example
+(a live refusal: 25x leverage blocked by policy). Read the
 full [withdrawal guarantee and key-handling rules](docs/SECURITY.md).
 
 ## Repository layout
@@ -203,7 +205,7 @@ full [withdrawal guarantee and key-handling rules](docs/SECURITY.md).
 packages/core/   @hexis/core - signing, discovery, risk, copy, receipts
 packages/cli/    @hexis/cli  - commander wrapper + verdict renderer
 examples/        basic-copy.ts, risk-policy.ts, agent-skill.ts
-docs/            SECURITY.md, RISK.md, AGENT.md
+docs/            SECURITY.md, RISK.md, AGENT.md, sample-receipt.json
 hexis.manifest.json
 hexis.mcp.json
 ```
@@ -219,12 +221,10 @@ endpoints that matter for copy trading.
 
 Honest edges, in the order you are likely to hit them:
 
-- **Signed calls are not yet live-tested.** `copy`, `positions`, and
-  authenticated `risk-check` margin checks are verified by unit tests
-  (mocked HTTP, RFC 8032 vectors, tamper-checked receipts) and audited
-  against Strike's published docs, but no signed request has yet been sent
-  from this repo to the live API with a registered wallet. Update this
-  section after that test.
+- Signed read endpoints (positions, history) and the copy refusal path
+  verified live with a registered API wallet on an account with no open
+  positions and no available margin. An executed (non-dry-run) copy has not
+  been tested live.
 - **Liquidation distance is an approximation.** The preflight estimate is
   `100/leverage` minus a fixed 1.1% maintenance/fee buffer. It does not model
   entry price, funding, or per-market maintenance-margin tiers, and it is not

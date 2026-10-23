@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "id": "db32965c-22d2-44f2-bc9b-59c3ce7d119a",
+  "createdAt": "2026-10-23T08:36:49.056Z",
+  "action": "copy",
+  "outcome": "refused",
+  "mandate": "Copy 0x5b5d51203a0f9079f8aeb098a6523a13f298c060 at 1% size, 25x leverage, isolated margin",
+  "method": "POST",
+  "endpoint": "/v2/copy/subscribe",
+  "nonce": "10c1fe9f-21fe-428b-b788-a633d3103f80",
+  "bodyHash": "38e0e48e1614f7a94a57731c2f3f6cf3ece388fb118e9236c57080863d753f4d",
+  "signedAt": "2026-10-23T08:36:49.000Z",
+  "request": {
+    "lead_account_id": "0x5b5d51203a0f9079f8aeb098a6523a13f298c060"
+  },
+  "result": {
+    "refused": true,
+    "reason": "Verdict BLOCKED; pass --force to override"
+  },
+  "verdict": {
+    "status": "BLOCKED",
+    "code": "LEVERAGE_EXCEEDS_POLICY",
+    "reasons": [
+      "Lead 0x5b5d51203a0f9079f8aeb098a6523a13f298c060 found on hyperliquid",
+      "Requested leverage 25x exceeds cap 10x for PUMP-USD",
+      "Estimated liquidation distance 2.9% < minimum 5%",
+      "Lead 30d max drawdown 22.9% <= cap 25%",
+      "Copy notional $0.00 is below the $10 market minimum",
+      "Margin mode isolated"
+    ],
+    "checks": [
+      {
+        "id": "lead-found",
+        "status": "pass",
+        "message": "Lead 0x5b5d51203a0f9079f8aeb098a6523a13f298c060 found on hyperliquid"
+      },
+      {
+        "id": "leverage-cap",
+        "status": "fail",
+        "code": "LEVERAGE_EXCEEDS_POLICY",
+        "message": "Requested leverage 25x exceeds cap 10x for PUMP-USD"
+      },
+      {
+        "id": "liquidation-distance",
+        "status": "fail",
+        "code": "LIQUIDATION_TOO_CLOSE",
+        "message": "Estimated liquidation distance 2.9% < minimum 5%"
+      },
+      {
+        "id": "lead-drawdown",
+        "status": "pass",
+        "message": "Lead 30d max drawdown 22.9% <= cap 25%"
+      },
+      {
+        "id": "margin",
+        "status": "fail",
+        "code": "INSUFFICIENT_MARGIN",
+        "message": "Copy notional $0.00 is below the $10 market minimum"
+      },
+      {
+        "id": "margin-mode",
+        "status": "pass",
+        "message": "Margin mode isolated"
+      }
+    ],
+    "input": {
+      "leverage": 25,
+      "sizePct": 1,
+      "isolated": true,
+      "market": "PUMP-USD"
+    },
+    "checkedAt": "2026-10-23T08:36:49.054Z",
+    "suggested": {
+      "leverage": 10
+    },
+    "lead": {
+      "address": "0x5b5d51203a0f9079f8aeb098a6523a13f298c060",
+      "platform": "hyperliquid",
+      "equity": 260299822.768321,
+      "pnl30dPct": 56.2846,
+      "maxDrawdown30dPct": 22.87
+    }
+  },
+  "publicKey": "3aa57f44a126e2ce9dcbf1a64bb805982bf41c08a715d2db22e38bf03231ed91",
+  "receiptHash": "fbbab7b92ab2fade6290b9eecdfea7a768c81bb212b198bd022fff5802fa0469",
+  "signature": "a2d57b0f6534c8def6b82c02ff1f6a5a85797666ecf1defe4f9315095cd0a412dab4ac86ebd85a2c61c986a933849d7165523f3cbcfcff28c70763101247d20e"
+}
